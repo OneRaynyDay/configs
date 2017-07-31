@@ -9,7 +9,7 @@ DEFAULT_USER=dev
 export ZSH=/Users/dev/.oh-my-zsh
 
 # Set my editor
-export EDITOR=vim
+# export EDITOR=vim
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -34,8 +34,7 @@ ZSH_CUSTOM=/Users/dev/.oh-my-zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git aliases funcs)
-source $ZSH/oh-my-zsh.sh
+plugins=(git aliases safe-paste funcs)
 ##############################
 
 
@@ -51,3 +50,5 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # bring in the bash export variables
 source /Users/dev/.bash_profile
+
+source $ZSH/oh-my-zsh.sh
