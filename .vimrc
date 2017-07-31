@@ -59,4 +59,8 @@ set shiftwidth=4
 " On pressing tab, insert 4 spaces
 set expandtab
 
+" Gets rid of the annoying problem with clipboard copy.
+set clipboard=unnamed
 
+" May be for brew vim, but this issue persists:
+set backspace=2
