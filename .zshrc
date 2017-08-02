@@ -51,4 +51,7 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # bring in the bash export variables
 source /Users/dev/.bash_profile
 
+# powerlevel9k anaconda addition
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(anaconda status root_indicator background_jobs history time)
+
 source $ZSH/oh-my-zsh.sh
