@@ -19,8 +19,36 @@ Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 map <Leader>n :NERDTreeToggle<CR>
 
+" Clang autocomplete ~ CURRENTLY DISABLED FOR YCM ~
+" Plug 'Rip-Rip/clang_complete'
+
+" Java autocomplete
+Plug 'artur-shaik/vim-javacomplete2'
+
+" General autocomplete
+Plug 'Valloric/YouCompleteMe'
+" Global configs
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
+" STFU about the config
+let g:ycm_confirm_extra_conf = 0
+
+" Integrated make/dispatch
+Plug 'tpope/vim-dispatch'
+
 " NERDCommenter
 Plug 'scrooloose/nerdcommenter'
+
+" Add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+
+" Use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+
+" Enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -64,3 +92,15 @@ set clipboard=unnamed
 
 " May be for brew vim, but this issue persists:
 set backspace=2
+
+" Allow Undos
+set undofile                " Save undo's after file closes
+set undodir=$HOME/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
+" Autocompletion
+autocmd FileType java setlocal omnifunc=javacomplete#Complete
+
+" Markdown view library
+filetype plugin on
