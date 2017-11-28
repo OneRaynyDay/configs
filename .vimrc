@@ -2,10 +2,6 @@
 " Always call this first.
 call plug#begin('~/.vim/plugged')
 
-" ~~ Color Scheme Management ~~
-" Solarized
-Plug 'altercation/vim-colors-solarized'
-
 " Molokai
 Plug 'tomasr/molokai' 
 
@@ -24,13 +20,6 @@ map <Leader>n :NERDTreeToggle<CR>
 
 " Java autocomplete
 Plug 'artur-shaik/vim-javacomplete2'
-
-" General autocomplete
-Plug 'Valloric/YouCompleteMe'
-" Global configs
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
-" STFU about the config
-let g:ycm_confirm_extra_conf = 0
 
 " Integrated make/dispatch
 Plug 'tpope/vim-dispatch'
@@ -53,11 +42,6 @@ let g:NERDTrimTrailingWhitespace = 1
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-" Make our airline look like powerline
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='dark'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#branch#enabled=1
 
 " Tagbar
 Plug 'majutsushi/tagbar'
@@ -72,7 +56,7 @@ call plug#end()
 " ~ Colorscheme ~
 syntax enable
 set background=dark
-colorscheme solarized
+colorscheme molokai
 
 " ~~ Vim Configurations ~~
 set mouse=a
