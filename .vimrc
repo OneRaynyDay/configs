@@ -26,19 +26,6 @@ Plug 'mileszs/ack.vim'
 Plug 'scrooloose/nerdtree'
 map <Leader>n :NERDTreeToggle<CR>
 
-" Clang autocomplete ~ CURRENTLY DISABLED FOR YCM ~
-" Plug 'Rip-Rip/clang_complete'
-
-" Java autocomplete
-Plug 'artur-shaik/vim-javacomplete2'
-
-" General autocomplete
-Plug 'Valloric/YouCompleteMe'
-" Global configs
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/.ycm_extra_conf.py'
-" STFU about the config
-let g:ycm_confirm_extra_conf = 0
-
 " Integrated make/dispatch
 Plug 'tpope/vim-dispatch'
 
