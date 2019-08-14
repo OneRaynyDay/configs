@@ -4,6 +4,10 @@ function finish {
 }
 trap finish EXIT
 
+# Check conda version on: https://repo.continuum.io/archive/
+CONDA_VERSION="Anaconda2-2019.07-MacOSX-x86_64.sh"
+CONDA_ROOT="https://repo.continuum.io/archive/"
+
 # Go to root dir
 pushd ~
 
@@ -49,7 +53,7 @@ printf "Run the following to start windows service: \nbrew services start chunkw
 
 # Install random good stuff
 echo "Installing tons of nice stuff in brew..."
-brew install htop cowsay fortune fzf the_silver_searcher
+brew install htop cowsay fortune fzf the_silver_searcher vim gcc@8
 
 # Install zsh
 echo "Checking zsh..." && brew ls --versions zsh
@@ -70,13 +74,13 @@ fi
 # Clone my settings
 if [ ! -d "$PWD/home/configs" ] ; then
 	mkdir -p ~/home && cd ~/home && git clone git@github.com:OneRaynyDay/configs.git && 
-	mv -i configs/.vimrc ~/.vimrc
+	mv -i configs/.vimrc ~/.vimrc &&
+    mv -i configs/.zshrc ~/.zshrc
 else
 	echo "Already set up configs"
 fi
 
 
-# Lastly ...
 # Also install oh-my-zsh
 echo "Checking oh-my-zsh"
 if [ ! -d "$PWD/.oh-my-zsh" ] ; then
@@ -88,4 +92,27 @@ else
 	echo "Already installed."
 fi
 
+# Install fish-like syntax highlighting in zsh
+if [ ! -d "$PWD/.oh-my-zsh/plugins/zsh-syntax-highlighting" ] ; then
+    pushd $PWD/.oh-my-zsh/plugins
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+    popd
+else
+    echo "Zsh's syntax highlighting is already cloned correctly."
+fi
+
 printf "Type: \n$ source ~/.zshrc to start running zsh \n$ vim ~/.vimrc to automatically download vim plug and download plugins and inspect vimrc\n"
+
+conda list
+if [[ $? != 0 ]] ; then
+    echo "Installing version $CONDA_ROOT from $CONDA_ROOT$CONDA_VERSION"
+    curl -Ok "$CONDA_ROOT$CONDA_VERSION"
+    bash $CONDA_VERSION -b -p ~/anaconda
+    rm $CONDA_VERSION
+    echo 'export PATH=~/anaconda/bin:$PATH' >> ~/.bash_profile
+    source ~/.bash_profile
+    conda update conda
+    conda init zsh
+else
+    echo "Conda distribution is already installed."
+fi
