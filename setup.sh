@@ -35,6 +35,7 @@ fi
 
 # Install window managers
 echo "Checking skhd..." && brew ls --versions skhd
+brew tap koekeishiya/formulae
 if [[ $? != 0 ]] ; then
 	brew install skhd
 else
