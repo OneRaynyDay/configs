@@ -3,82 +3,82 @@ function finish {
     popd
 }
 trap finish EXIT
-#
+
 # Check conda version on: https://repo.continuum.io/archive/
 CONDA_VERSION="Anaconda3-2020.07-MacOSX-x86_64.sh"
 CONDA_ROOT="https://repo.anaconda.com/archive/"
-#
-# # Go to root dir
-pushd ~
-#
-# # Create a github key
-# echo "Before starting, make sure github has the key added"
-# if [ ! -f "$PWD/.ssh/id_rsa" ] ; then
-    # ssh-keygen -t rsa -b 4096 -C "peifeng2005@gmail.com"
-    # echo "Re-run this script again after github has been setup"
-    # exit 1
-# else
-    # echo "Key already exists."
-# fi
-#
-# # Update CLI tools for XCode
-# echo "Checking if xcode CLI is built"
-# xcode-select --install
-#
-# # Install homebrew
-# which -s brew
-# if [[ $? != 0 ]] ; then
-    # /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-# else
-    # brew update
-# fi
-#
-# # Install window managers
-# echo "Checking skhd..." && brew ls --versions skhd
-# if [[ $? != 0 ]] ; then
-	# brew install skhd
-     # cp /usr/local/opt/skhd/share/skhd/examples/skhdrc ~/.skhdr
-# else
-	# echo "Already installed."
-# fi
-# echo "Checking yabai..." && brew ls --versions yabai
-# if [[ $? != 0 ]] ; then
-	# brew install koekeishiya/formulae/yabai
-    # cp /usr/local/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
-# else
-	# echo "Already installed."
-# fi
-# # Run window manager (may require permissioning)
-# printf "Run the following to start windows service: \nbrew services start yabai \nbrew services start skhd\n"
-#
-# # Install random good stuff
-# echo "Installing tons of nice stuff in brew..."
-# brew install htop cowsay fortune fzf the_silver_searcher vim gcc@8
 
-# Install zsh
-# echo "Checking zsh..." && brew ls --versions zsh
-# if [[ $? != 0 ]] ; then
-    # brew install zsh
-# else
-    # echo "Already installed."
-# fi
-#
-# # Install git
-# echo "Checking git..." && brew ls --versions zsh
-# if [[ $? != 0 ]] ; then
-    # brew install git
-# else
-    # echo "Already installed"
-# fi
-#
-# # Clone my settings
-# if [ ! -d "$PWD/home/configs" ] ; then
-    # mkdir -p ~/home && cd ~/home && git clone git@github.com:OneRaynyDay/configs.git &&
-    # mv -i configs/.vimrc ~/.vimrc &&
-    # mv -i configs/.zshrc ~/.zshrc
-# else
-    # echo "Already set up configs"
-# fi
+# Go to root dir
+pushd ~
+
+# Create a github key
+echo "Before starting, make sure github has the key added"
+if [ ! -f "$PWD/.ssh/id_rsa" ] ; then
+    ssh-keygen -t rsa -b 4096 -C "peifeng2005@gmail.com"
+    echo "Re-run this script again after github has been setup"
+    exit 1
+else
+    echo "Key already exists."
+fi
+
+# Update CLI tools for XCode
+echo "Checking if xcode CLI is built"
+xcode-select --install
+
+# Install homebrew
+which -s brew
+if [[ $? != 0 ]] ; then
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+else
+    brew update
+fi
+
+# Install window managers
+echo "Checking skhd..." && brew ls --versions skhd
+if [[ $? != 0 ]] ; then
+    brew install skhd
+     cp /usr/local/opt/skhd/share/skhd/examples/skhdrc ~/.skhdr
+else
+    echo "Already installed."
+fi
+echo "Checking yabai..." && brew ls --versions yabai
+if [[ $? != 0 ]] ; then
+    brew install koekeishiya/formulae/yabai
+    cp /usr/local/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
+else
+    echo "Already installed."
+fi
+# Run window manager (may require permissioning)
+printf "Run the following to start windows service: \nbrew services start yabai \nbrew services start skhd\n"
+
+# Install random good stuff
+echo "Installing tons of nice stuff in brew..."
+brew install htop cowsay fortune fzf the_silver_searcher vim gcc@8
+
+Install zsh
+echo "Checking zsh..." && brew ls --versions zsh
+if [[ $? != 0 ]] ; then
+    brew install zsh
+else
+    echo "Already installed."
+fi
+
+# Install git
+echo "Checking git..." && brew ls --versions zsh
+if [[ $? != 0 ]] ; then
+    brew install git
+else
+    echo "Already installed"
+fi
+
+# Clone my settings
+if [ ! -d "$PWD/home/configs" ] ; then
+    mkdir -p ~/home && cd ~/home && git clone git@github.com:OneRaynyDay/configs.git &&
+    mv -i configs/.vimrc ~/.vimrc &&
+    mv -i configs/.zshrc ~/.zshrc
+else
+    echo "Already set up configs"
+fi
 
 
 # Also install oh-my-zsh
