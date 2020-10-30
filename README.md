@@ -1,5 +1,5 @@
 # configs
-ZSH|OHMYZSH|BASHPROFILE|SLATE|VIMRC|KARABINER
+ZSH|OHMYZSH|BASHPROFILE|YABAI|SKHD|VIMRC
 
 ## Installations
 For vim, I am using the vim from homebrew:
@@ -17,5 +17,3 @@ I installed the font powerline so that my tagbar could look dank.
 
 ## Sub-configs
 For zsh, I'm using default mode(not vi-mode), and default `setopt`. 
-
-For karabiner, I set capslock to hyper keys.

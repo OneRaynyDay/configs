@@ -14,11 +14,11 @@ pushd ~
 # Create a github key
 echo "Before starting, make sure github has the key added"
 if [ ! -f "$PWD/.ssh/id_rsa" ] ; then
-	ssh-keygen -t rsa -b 4096 -C "peifeng2005@gmail.com"
-	echo "Re-run this script again after github has been setup"
-	exit 1
+    ssh-keygen -t rsa -b 4096 -C "peifeng2005@gmail.com"
+    echo "Re-run this script again after github has been setup"
+    exit 1
 else
-	echo "Key already exists."
+    echo "Key already exists."
 fi
 
 # Update CLI tools for XCode
@@ -28,24 +28,23 @@ xcode-select --install
 # Install homebrew
 which -s brew
 if [[ $? != 0 ]] ; then
-	/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 else
-	brew update
+    brew update
 fi
 
 # Install window managers
 echo "Checking skhd..." && brew ls --versions skhd
-brew tap koekeishiya/formulae
 if [[ $? != 0 ]] ; then
 	brew install skhd
+     cp /usr/local/opt/skhd/share/skhd/examples/skhdrc ~/.skhdr
 else
 	echo "Already installed."
 fi
-echo "Checking chunkwm..." && brew ls --versions chunkwm
+echo "Checking yabai..." && brew ls --versions yabai
 if [[ $? != 0 ]] ; then
-	brew install chunkwm 
-	# Chunkwm requires plugins at this path
-	cp -r -i /usr/local/opt/chunkwm/share/chunkwm/plugins ~/.chunkwm_plugins
+	brew install koekeishiya/formulae/yabai
+    cp /usr/local/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
 else
 	echo "Already installed."
 fi
@@ -59,38 +58,38 @@ brew install htop cowsay fortune fzf the_silver_searcher vim gcc@8
 # Install zsh
 echo "Checking zsh..." && brew ls --versions zsh
 if [[ $? != 0 ]] ; then
-	brew install zsh
+    brew install zsh
 else
-	echo "Already installed."
+    echo "Already installed."
 fi
 
 # Install git
 echo "Checking git..." && brew ls --versions zsh
 if [[ $? != 0 ]] ; then
-	brew install git
+    brew install git
 else
-	echo "Already installed"
+    echo "Already installed"
 fi
 
 # Clone my settings
 if [ ! -d "$PWD/home/configs" ] ; then
-	mkdir -p ~/home && cd ~/home && git clone git@github.com:OneRaynyDay/configs.git && 
-	mv -i configs/.vimrc ~/.vimrc &&
+    mkdir -p ~/home && cd ~/home && git clone git@github.com:OneRaynyDay/configs.git &&
+    mv -i configs/.vimrc ~/.vimrc &&
     mv -i configs/.zshrc ~/.zshrc
 else
-	echo "Already set up configs"
+    echo "Already set up configs"
 fi
 
 
 # Also install oh-my-zsh
 echo "Checking oh-my-zsh"
 if [ ! -d "$PWD/.oh-my-zsh" ] ; then
-	RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    RUNZSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     # Requires cloning settings to be successful.
     mkdir -p "$PWD/.oh-my-zsh/custom/plugins/funcs" && mv -i $PWD/home/configs/funcs.plugin.zsh ~/.oh-my-zsh/custom/plugins/funcs/funcs.plugin.zsh
     mkdir -p "$PWD/.oh-my-zsh/custom/plugins/aliases" && mv -i $PWD/home/configs/aliases.plugin.zsh ~/.oh-my-zsh/custom/plugins/aliases/aliases.plugin.zsh
 else
-	echo "Already installed."
+    echo "Already installed."
 fi
 
 # Install fish-like syntax highlighting in zsh
