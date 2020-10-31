@@ -74,3 +74,9 @@ shift + lctrl + alt - r :
 # Make window native fullscreen
 alt - f         : yabai -m window --toggle zoom-fullscreen
 shift + alt - f : yabai -m window --toggle native-fullscreen
+
+# Close current window
+shift + alt - q : yabai -m window --close
+
+# Open iTerm2
+alt - return : bash "${HOME}"/.scripts/open_iterm2.sh

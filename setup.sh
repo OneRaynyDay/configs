@@ -37,14 +37,15 @@ fi
 echo "Checking skhd..." && brew ls --versions skhd
 if [[ $? != 0 ]] ; then
     brew install skhd
-     cp /usr/local/opt/skhd/share/skhd/examples/skhdrc ~/.skhdr
+    cp $PWD/home/configs/.skhdrc $PWD/.skhdrc
+    cp -R $PWD/home/configs/.scripts $PWD/.scripts
 else
     echo "Already installed."
 fi
 echo "Checking yabai..." && brew ls --versions yabai
 if [[ $? != 0 ]] ; then
     brew install koekeishiya/formulae/yabai
-    cp /usr/local/opt/yabai/share/yabai/examples/yabairc ~/.yabairc
+    cp $PWD/home/configs/.yabairc $PWD/.yabairc
 else
     echo "Already installed."
 fi
@@ -74,8 +75,8 @@ fi
 # Clone my settings
 if [ ! -d "$PWD/home/configs" ] ; then
     mkdir -p ~/home && cd ~/home && git clone git@github.com:OneRaynyDay/configs.git &&
-    mv -i configs/.vimrc ~/.vimrc &&
-    mv -i configs/.zshrc ~/.zshrc
+    cp -i configs/.vimrc ~/.vimrc &&
+    cp -i configs/.zshrc ~/.zshrc
 else
     echo "Already set up configs"
 fi
@@ -90,8 +91,8 @@ else
     echo "Already installed."
 fi
 
-mkdir -p "$PWD/.oh-my-zsh/custom/plugins/funcs" && mv -i $PWD/home/configs/funcs.plugin.zsh ~/.oh-my-zsh/custom/plugins/funcs/funcs.plugin.zsh
-mkdir -p "$PWD/.oh-my-zsh/custom/plugins/aliases" && mv -i $PWD/home/configs/aliases.plugin.zsh ~/.oh-my-zsh/custom/plugins/aliases/aliases.plugin.zsh
+mkdir -p "$PWD/.oh-my-zsh/custom/plugins/funcs" && cp -i $PWD/home/configs/funcs.plugin.zsh ~/.oh-my-zsh/custom/plugins/funcs/funcs.plugin.zsh
+mkdir -p "$PWD/.oh-my-zsh/custom/plugins/aliases" && cp -i $PWD/home/configs/aliases.plugin.zsh ~/.oh-my-zsh/custom/plugins/aliases/aliases.plugin.zsh
 
 # Install fish-like syntax highlighting in zsh
 if [ ! -d "$PWD/.oh-my-zsh/plugins/zsh-syntax-highlighting" ] ; then
